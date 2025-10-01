@@ -5,6 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leis Municipais</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilo extra para os cards de detalhes */
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            max-width: 700px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+        }
+        .detalhes {
+            background-color: #f1f1f1;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+        button {
+            cursor: pointer;
+            padding: 8px 15px;
+            background-color: #00509e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #003f7f;
+        }
+        ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -14,7 +52,7 @@
 
     <header>
         <h1>Leis Municipais</h1>
-        <p>Consulte a legislação municipal vigente e seus atos vinculados.</p>
+        <p>Consulte a legislação municipal vigente e visualize seus atos vinculados.</p>
     </header>
 
     <main id="lista-leis" class="secoes">
@@ -22,7 +60,7 @@
     </main>
 
     <footer>
-        <p>© 2025 Prefeitura Municipal de Ipiranga do Norte - MT | Casa Municipal dos Conselhos</p>
+        <p>© 2025 Prefeitura Municipal de Ipiranga do Norte - MT</p>
     </footer>
 
     <script src="js/jsdados.js"></script>
@@ -45,7 +83,10 @@
             botaoDetalhes.textContent = "Ver detalhes";
             botaoDetalhes.onclick = () => {
                 const detalhesExistentes = card.querySelector('.detalhes');
-                if (detalhesExistentes) detalhesExistentes.remove();
+                if (detalhesExistentes) {
+                    detalhesExistentes.remove();
+                    return; // Toggle: fecha se já estava aberto
+                }
 
                 const detalhes = document.createElement('div');
                 detalhes.classList.add('detalhes');
