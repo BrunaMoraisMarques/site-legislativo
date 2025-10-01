@@ -1,1 +1,87 @@
-body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; } 
+/* Reset básico e fonte */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navegação */
+nav {
+    background-color: #00509e;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #e1e1e1;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #00509e;
+}
+
+header p {
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* Seções principais */
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+section h2 {
+    color: #00509e;
+    margin-bottom: 15px;
+}
+
+section p {
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+}
+
+section a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00509e;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+section a:hover {
+    background-color: #003f7f;
+}
+
+/* Rodapé simples */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
