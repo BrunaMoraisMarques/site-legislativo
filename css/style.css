@@ -1,143 +1,39 @@
-/* Reset básico e fonte */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #f7f7f7;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Navegação */
-nav {
-    background-color: #00509e;
-    padding: 10px;
-    text-align: center;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Cabeçalho */
-header {
-    background-color: #e1e1e1;
-    padding: 40px 20px;
-    text-align: center;
-    border-bottom: 2px solid #ccc;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    color: #00509e;
-}
-
-header p {
-    font-size: 1.1rem;
-    margin-top: 10px;
-}
-
-/* Seções principais */
-main.secoes {
-    padding: 40px 20px;
+.lista-leis {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
 
-.card {
-    background-color: #fff;
+.lei-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     padding: 20px;
     width: 300px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-    text-align: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
 }
 
-.card h2 {
-    color: #00509e;
-    margin-bottom: 15px;
-    font-size: 1.3rem;
+.lei-card:hover {
+    transform: translateY(-5px);
 }
 
-.card p {
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-}
-
-.card a.botao {
-    display: inline-block;
-    padding: 10px 20px;
+.lei-card button {
+    padding: 8px 15px;
+    margin-top: 10px;
     background-color: #00509e;
     color: #fff;
-    text-decoration: none;
+    border: none;
     border-radius: 5px;
-    transition: 0.3s;
+    cursor: pointer;
 }
 
-.card a.botao:hover {
+.lei-card button:hover {
     background-color: #003f7f;
 }
 
-/* Detalhes da lei */
-#detalhes-lei h2 {
-    color: #00509e;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-#detalhes-lei p {
-    max-width: 700px;
-    margin: 0 auto 20px auto;
-    text-align: justify;
-}
-
-#detalhes-lei h3 {
-    color: #333;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-#detalhes-lei ul {
-    list-style-type: disc;
-    max-width: 700px;
-    margin: 0 auto 20px auto;
-    padding-left: 20px;
-}
-
-#detalhes-lei li {
-    margin-bottom: 5px;
-}
-
-/* Rodapé */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    main.secoes {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .card {
-        width: 90%;
-    }
+.detalhes-vinculados {
+    margin-top: 10px;
+    text-align: left;
 }

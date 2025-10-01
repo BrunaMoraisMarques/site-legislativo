@@ -1,45 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leis Municipais</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <nav>
-        <a href="index.html">Início</a> |
-        <a href="leis.html">Leis</a> |
-        <a href="noticias.html">Notícias</a>
-    </nav>
+<h1>Leis Municipais</h1>
+<div id="lista-leis" class="lista-leis"></div>
 
-    <header>
-        <h1>Leis Municipais</h1>
-        <p>Consulte as leis municipais e visualize seus atos vinculados.</p>
-    </header>
+<script src="js/jsdados.js"></script>
+<script>
+const listaLeis = document.getElementById("lista-leis");
 
-    <main class="secoes">
-        <section id="lista-leis"></section>
-    </main>
+lels.forEach(lei => {
+    const card = document.createElement("div");
+    card.className = "lei-card";
 
-    <footer>
-        <p>© 2025 Prefeitura Municipal de Ipiranga do Norte - MT | Casa Municipal dos Conselhos</p>
-    </footer>
+    card.innerHTML = `
+        <h2>${lei.titulo}</h2>
+        <p>${lei.descricao}</p>
+        <button onclick="mostrarDetalhes(${lei.id})">Ver Detalhes e Atos Vinculados</button>
+        <div id="detalhes-${lei.id}" class="detalhes-vinculados" style="display:none;"></div>
+    `;
+    listaLeis.appendChild(card);
+});
 
-    <script src="js/jsdados.js"></script>
-    <script>
-        const lista = document.getElementById('lista-leis');
-
-        leis.forEach(lei => {
-            const card = document.createElement('div');
-            card.classList.add('card');
-            card.innerHTML = `
-                <h2>${lei.titulo}</h2>
-                <p>${lei.descricao}</p>
-                <a href="detalhes.html?id=${lei.id}" class="botao">Ver detalhes</a>
-            `;
-            lista.appendChild(card);
-        });
-    </script>
-</body>
-</html>
+function mostrarDetalhes(id) {
+    const detalhes = document.getElementById(`detalhes-${id}`);
+    const lei = leis.find(l => l.id === id);
+    detalhes.innerHTML = "<h3>Atos Vinculados:</h3><ul>" +
+        lei.vinculados.map(v => `<li>${v}</li>`).join("") +
+        "</ul>";
+    detalhes.style.display = detalhes.style.display === "none" ? "block" : "none";
+}
+</script>
