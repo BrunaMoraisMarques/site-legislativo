@@ -1,29 +1,73 @@
-<h1>Leis Municipais</h1>
-<div id="lista-leis" class="lista-leis"></div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leis Municipais</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Início</a> |
+        <a href="leis.html">Leis</a>
+    </nav>
 
-<script src="js/jsdados.js"></script>
-<script>
-const listaLeis = document.getElementById("lista-leis");
+    <header>
+        <h1>Leis Municipais</h1>
+        <p>Consulte a legislação municipal vigente e seus atos vinculados.</p>
+    </header>
 
-lels.forEach(lei => {
-    const card = document.createElement("div");
-    card.className = "lei-card";
+    <main id="lista-leis" class="secoes">
+        <!-- Lista de leis será gerada automaticamente -->
+    </main>
 
-    card.innerHTML = `
-        <h2>${lei.titulo}</h2>
-        <p>${lei.descricao}</p>
-        <button onclick="mostrarDetalhes(${lei.id})">Ver Detalhes e Atos Vinculados</button>
-        <div id="detalhes-${lei.id}" class="detalhes-vinculados" style="display:none;"></div>
-    `;
-    listaLeis.appendChild(card);
-});
+    <footer>
+        <p>© 2025 Prefeitura Municipal de Ipiranga do Norte - MT | Casa Municipal dos Conselhos</p>
+    </footer>
 
-function mostrarDetalhes(id) {
-    const detalhes = document.getElementById(`detalhes-${id}`);
-    const lei = leis.find(l => l.id === id);
-    detalhes.innerHTML = "<h3>Atos Vinculados:</h3><ul>" +
-        lei.vinculados.map(v => `<li>${v}</li>`).join("") +
-        "</ul>";
-    detalhes.style.display = detalhes.style.display === "none" ? "block" : "none";
-}
-</script>
+    <script src="js/jsdados.js"></script>
+    <script>
+        const container = document.getElementById('lista-leis');
+
+        leis.forEach(lei => {
+            const card = document.createElement('section');
+            card.classList.add('card');
+
+            const titulo = document.createElement('h2');
+            titulo.textContent = lei.titulo;
+            card.appendChild(titulo);
+
+            const descricao = document.createElement('p');
+            descricao.textContent = lei.descricao;
+            card.appendChild(descricao);
+
+            const botaoDetalhes = document.createElement('button');
+            botaoDetalhes.textContent = "Ver detalhes";
+            botaoDetalhes.onclick = () => {
+                const detalhesExistentes = card.querySelector('.detalhes');
+                if (detalhesExistentes) detalhesExistentes.remove();
+
+                const detalhes = document.createElement('div');
+                detalhes.classList.add('detalhes');
+
+                if (lei.vinculados && lei.vinculados.length > 0) {
+                    const lista = document.createElement('ul');
+                    lei.vinculados.forEach(vinculado => {
+                        const item = document.createElement('li');
+                        item.textContent = vinculado;
+                        lista.appendChild(item);
+                    });
+                    detalhes.appendChild(lista);
+                } else {
+                    detalhes.textContent = "Nenhum ato vinculado.";
+                }
+
+                card.appendChild(detalhes);
+            };
+            card.appendChild(botaoDetalhes);
+
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>

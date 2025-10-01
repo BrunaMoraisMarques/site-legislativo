@@ -1,0 +1,42 @@
+// js/leis.js
+const listaLeis = document.getElementById('lista-leis');
+
+// Função para criar os cards de leis
+function mostrarLeis() {
+    leis.forEach(lei => {
+        const card = document.createElement('section');
+        card.classList.add('card');
+
+        const titulo = document.createElement('h2');
+        titulo.textContent = lei.titulo;
+        card.appendChild(titulo);
+
+        const descricao = document.createElement('p');
+        descricao.textContent = lei.descricao;
+        card.appendChild(descricao);
+
+        if (lei.vinculados && lei.vinculados.length > 0) {
+            const vinculos = document.createElement('ul');
+            vinculos.textContent = "Atos vinculados:";
+            
+            lei.vinculados.forEach(vinculado => {
+                const item = document.createElement('li');
+                item.textContent = vinculado;
+                vinculos.appendChild(item);
+            });
+
+            card.appendChild(vinculos);
+        }
+
+        // Link para detalhes
+        const linkDetalhe = document.createElement('a');
+        linkDetalhe.href = `detalhes.html?id=${lei.id}`;
+        linkDetalhe.textContent = "Ver detalhes";
+        card.appendChild(linkDetalhe);
+
+        listaLeis.appendChild(card);
+    });
+}
+
+// Executar função
+mostrarLeis();
