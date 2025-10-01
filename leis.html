@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leis Municipais</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leis Municipais</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <nav>
-    <a href="index.html">Início</a> |
-    <a href="leis.html">Leis</a>
-  </nav>
+    <nav>
+        <a href="index.html">Início</a> |
+        <a href="leis.html">Leis</a> |
+        <a href="noticias.html">Notícias</a>
+    </nav>
 
-  <header>
-    <h1>Leis Municipais</h1>
-    <p>Consulte todas as leis municipais e veja atos vinculados.</p>
-  </header>
+    <header>
+        <h1>Leis Municipais</h1>
+        <p>Consulte as leis municipais e visualize seus atos vinculados.</p>
+    </header>
 
-  <main>
-    <ul id="lista-leis"></ul>
-  </main>
+    <main class="secoes">
+        <section id="lista-leis"></section>
+    </main>
 
-  <footer>
-    <p>© 2025 Prefeitura Municipal de Ipiranga do Norte - MT</p>
-  </footer>
+    <footer>
+        <p>© 2025 Prefeitura Municipal de Ipiranga do Norte - MT | Casa Municipal dos Conselhos</p>
+    </footer>
 
-  <script src="js/jsdados.js"></script>
-  <script>
-    const lista = document.getElementById('lista-leis');
-    leis.forEach(lei => {
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="detalhe.html?id=${lei.id}">${lei.titulo}</a>`;
-      lista.appendChild(li);
-    });
-  </script>
+    <script src="js/jsdados.js"></script>
+    <script>
+        const lista = document.getElementById('lista-leis');
+
+        leis.forEach(lei => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+                <h2>${lei.titulo}</h2>
+                <p>${lei.descricao}</p>
+                <a href="detalhes.html?id=${lei.id}" class="botao">Ver detalhes</a>
+            `;
+            lista.appendChild(card);
+        });
+    </script>
 </body>
 </html>

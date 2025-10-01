@@ -1,44 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalhes da Lei</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Lei</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <nav>
-    <a href="index.html">Início</a> |
-    <a href="leis.html">Leis</a>
-  </nav>
+    <nav>
+        <a href="index.html">Início</a> |
+        <a href="leis.html">Leis</a> |
+        <a href="noticias.html">Notícias</a>
+    </nav>
 
-  <main id="detalhe-lei"></main>
+    <header>
+        <h1>Detalhes da Lei</h1>
+    </header>
 
-  <footer>
-    <p>© 2025 Prefeitura Municipal de Ipiranga do Norte - MT</p>
-  </footer>
+    <main class="secoes">
+        <section id="detalhes-lei"></section>
+    </main>
 
-  <script src="js/jsdados.js"></script>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id'));
-    const lei = leis.find(l => l.id === id);
+    <footer>
+        <p>© 2025 Prefeitura Municipal de Ipiranga do Norte - MT | Casa Municipal dos Conselhos</p>
+    </footer>
 
-    const main = document.getElementById('detalhe-lei');
+    <script src="js/jsdados.js"></script>
+    <script>
+        const detalhesSection = document.getElementById('detalhes-lei');
+        const params = new URLSearchParams(window.location.search);
+        const id = parseInt(params.get('id'));
+        const lei = leis.find(l => l.id === id);
 
-    if (lei) {
-      main.innerHTML = `
-        <h1>${lei.titulo}</h1>
-        <p>${lei.descricao}</p>
-        <h2>Atos vinculados:</h2>
-        <ul>
-          ${lei.vinculados.map(v => `<li>${v}</li>`).join('')}
-        </ul>
-        <a href="leis.html">Voltar para Leis</a>
-      `;
-    } else {
-      main.innerHTML = `<p>Lei não encontrada.</p><a href="leis.html">Voltar para Leis</a>`;
-    }
-  </script>
+        if (lei) {
+            let vinculadosHTML = '<ul>';
+            lei.vinculados.forEach(v => {
+                vinculadosHTML += `<li>${v}</li>`;
+            });
+            vinculadosHTML += '</ul>';
+
+            detalhesSection.innerHTML = `
+                <h2>${lei.titulo}</h2>
+                <p>${lei.descricao}</p>
+                <h3>Atos Vinculados:</h3>
+                ${vinculadosHTML}
+            `;
+        } else {
+            detalhesSection.innerHTML = `<p>Lei não encontrada.</p>`;
+        }
+    </script>
 </body>
 </html>
